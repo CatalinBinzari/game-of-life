@@ -320,7 +320,7 @@ int main()
          
         clock.restart().asSeconds();
 
-        sf::Text textFps("FPS: "+std::to_string(setprecision(2)(1 / time.asSeconds()) ,font);
+        sf::Text textFps("FPS: "+std::to_string(1 / time.asSeconds()) ,font);
 	    textFps.setCharacterSize(25);
 	    textFps.setPosition(10, CELL_SIZE * GRID_HEIGHT + 5);
 	    textFps.setFillColor(RED);
