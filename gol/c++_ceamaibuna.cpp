@@ -24,14 +24,12 @@ int wrapValue(int v, int vMax)
         return 0;
     return v;
 }
+
 string precedentGrid(int grid[])
 {
             ifstream myfile;
             ofstream os;
-            
-
-            
-            int i = 0;
+			int i;
             myfile.open("filetext.txt");
             os.open("b.txt");
             int lineNo = 0;
@@ -48,8 +46,8 @@ string precedentGrid(int grid[])
                 i++;
                 getline(myfile, stringline);
                 os << stringline;
-                if (i < lineNo - 1)
-                    os << endl;
+                if (i < lineNo - 1) os << endl;
+                
             }
             myfile.close();
             os.close();
@@ -119,8 +117,8 @@ bool isSpriteHover(sf::FloatRect sprite, sf::Vector2f mp)
 int main()
 {
     remove("filetext.txt");
-    const int CELL_SIZE =30;                             
-    const sf::Vector2f CELL_VECTOR(CELL_SIZE, CELL_SIZE); 
+    const int CELL_SIZE = 30;                             
+    const sf::Vector2f CELL_VECTOR(CELL_SIZE, CELL_SIZE); //simple class that defines a mathematical vector with two coordinates (x and y).
     const int GRID_WIDTH = 30;                            
     const int GRID_HEIGHT = 20;                          
     const int N_CELLS = GRID_WIDTH * GRID_HEIGHT;         
@@ -140,12 +138,6 @@ int main()
 
     sf::Font font;
     font.loadFromFile("arial.ttf");
-
-    sf::Text textFps("", font);
-    textFps.setCharacterSize(15);
-    textFps.setPosition(10, CELL_SIZE * GRID_HEIGHT + 5);
-    textFps.setFillColor(RED);
-
    
     sf::Texture textureButtonP;
     if (!textureButtonP.loadFromFile("button3.png"))
@@ -247,6 +239,7 @@ int main()
                     if (event.mouseButton.button == sf::Mouse::Left)
                     {
                         reverse = true;
+                        isPlaying=false;
                     }
                 }
                 break;
@@ -312,10 +305,8 @@ int main()
        
         sf::Time time = clock.getElapsedTime();
         std::cout << fixed << setprecision(2) << 1.0f / time.asSeconds() << std::endl;
-
-        clock.restart().asSeconds();
-
-        sf::Text textFps("FPS: " + std::to_string(1 / time.asSeconds()), font);//goto up set text size
+		clock.restart().asSeconds();
+		sf::Text textFps("FPS: " + std::to_string(1 / time.asSeconds()), font);//goto up set text size
         textFps.setCharacterSize(25);
         textFps.setPosition(10, CELL_SIZE * GRID_HEIGHT + 5);
         textFps.setFillColor(RED);
